@@ -39,7 +39,7 @@ class ThumbnailError(Exception):
 
 class Thumbnailer:
 
-    FORMATS = {"image/jpeg": "JPEG", "image/png": "PNG"}
+    FORMATS = {"image/jpeg": "JPEG", "image/png": "PNG", "image/webp": "WEBP"}
 
     @staticmethod
     def set_limits(max_image_pixels: int) -> None:
