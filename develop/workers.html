@@ -284,6 +284,14 @@ recommend the use of <code>systemd</code> where available: for information on se
 <code>systemd</code> to start synapse workers, see
 <a href="systemd-with-workers/">Systemd with Workers</a>. To use <code>synctl</code>, see
 <a href="synctl_workers.html">Using synctl with Workers</a>.</p>
+<h2 id="start-synapse-with-poetry"><a class="header" href="#start-synapse-with-poetry">Start Synapse with Poetry</a></h2>
+<p>The following applies to Synapse installations that have been installed from source using <code>poetry</code>.</p>
+<p>You can start the main Synapse process with Poetry by running the following command:</p>
+<pre><code class="language-console">poetry run synapse_homeserver -c [your homeserver.yaml]
+</code></pre>
+<p>For worker setups, you can run the following command</p>
+<pre><code class="language-console">poetry run synapse_worker -c [your worker.yaml]
+</code></pre>
 <h2 id="available-worker-applications"><a class="header" href="#available-worker-applications">Available worker applications</a></h2>
 <h3 id="synapseappgeneric_worker"><a class="header" href="#synapseappgeneric_worker"><code>synapse.app.generic_worker</code></a></h3>
 <p>This worker can handle API requests matching the following regular expressions.
@@ -340,7 +348,9 @@ information.</p>
 ^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/event/
 ^/_matrix/client/(api/v1|r0|v3|unstable)/joined_rooms$
 ^/_matrix/client/v1/rooms/.*/timestamp_to_event$
+^/_matrix/client/(api/v1|r0|v3|unstable/.*)/rooms/.*/aliases
 ^/_matrix/client/(api/v1|r0|v3|unstable)/search$
+^/_matrix/client/(r0|v3|unstable)/user/.*/filter(/|$)
 
 # Encryption requests
 ^/_matrix/client/(r0|v3|unstable)/keys/query$
@@ -352,6 +362,7 @@ information.</p>
 # Registration/login requests
 ^/_matrix/client/(api/v1|r0|v3|unstable)/login$
 ^/_matrix/client/(r0|v3|unstable)/register$
+^/_matrix/client/(r0|v3|unstable)/register/available$
 ^/_matrix/client/v1/register/m.login.registration_token/validity$
 
 # Event sending requests
@@ -360,6 +371,7 @@ information.</p>
 ^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/state/
 ^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/(join|invite|leave|ban|unban|kick)$
 ^/_matrix/client/(api/v1|r0|v3|unstable)/join/
+^/_matrix/client/(api/v1|r0|v3|unstable)/knock/
 ^/_matrix/client/(api/v1|r0|v3|unstable)/profile/
 
 # Account data requests
